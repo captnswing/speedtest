@@ -9,10 +9,11 @@ if __name__ == '__main__':
     if socket.gethostname().endswith('.local'):
         dropboxhome = os.path.expanduser('~/Dropbox')
 
+    ping_ds = list()
+    upload_ds = list()
+    download_ds = list()
+
     for root, dirs, files in os.walk(os.path.join(dropboxhome, 'speedtest')):
-        ping_ds = list()
-        upload_ds = list()
-        download_ds = list()
         for fn in files:
             if not fn.endswith('.txt'):
                 continue
