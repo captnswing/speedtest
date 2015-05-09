@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import socket
+import json
 
 if __name__ == '__main__':
     dropboxhome = '/volume1/storage/dropbox'
@@ -9,14 +10,30 @@ if __name__ == '__main__':
         dropboxhome = os.path.expanduser('~/Dropbox')
 
     for root, dirs, files in os.walk(os.path.join(dropboxhome, 'speedtest')):
+        ping_ds = list()
+        upload_ds = list()
+        download_ds = list()
         for fn in files:
             lines = open(os.path.join(root, fn)).read().splitlines()
             timestamp = fn.rstrip('.txt').split('_')[1]
-            label = lines[3].split(':')[0].replace(' ', '_')
-            datapoints = {
-                'ping': lines[3].split(': ')[1].rstrip(' ms'),
-                'upload': lines[5].split(' ')[1],
-                'download': lines[7].split(' ')[1]
-            }
-            for label, metric in datapoints.items():
-                print "{} {} {}".format(timestamp, label, metric)
+            source = lines[3].split(':')[0]  # .replace(' ', '_')
+            ping = lines[3].split(': ')[1].rstrip(' ms')
+            upload = lines[5].split(' ')[1]
+            download = lines[7].split(' ')[1]
+            ping_ds.append([int(timestamp) * 1000, float(ping)])
+            upload_ds.append([int(timestamp) * 1000, upload])
+            download_ds.append([int(timestamp) * 1000, download])
+
+ping = [
+    {
+        'color': u'#FF0000',
+        'lines': {u'show': True},
+        'points': {
+            'fillColor': u'#FF0000',
+            'show': True
+        },
+        'data': ping_ds,
+        'label': u'ping (ms)',
+    }
+]
+json.dump(ping, open("ping.json", 'w'), indent=4)
