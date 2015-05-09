@@ -14,6 +14,8 @@ if __name__ == '__main__':
         upload_ds = list()
         download_ds = list()
         for fn in files:
+            if not fn.endswith('.txt'):
+                continue
             lines = open(os.path.join(root, fn)).read().splitlines()
             timestamp = fn.rstrip('.txt').split('_')[1]
             source = lines[3].split(':')[0]  # .replace(' ', '_')
