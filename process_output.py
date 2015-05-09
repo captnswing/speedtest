@@ -37,3 +37,26 @@ ping = [
     }
 ]
 json.dump(ping, open("ping.json", 'w'), indent=4)
+downup = [
+    {
+        'color': u'#23c200',
+        'lines': {u'show': True},
+        'points': {
+            'fillColor': u'#23c200',
+            'show': True
+        },
+        'data': download_ds,
+        'label': u'download (Mbit/s)',
+    },
+    {
+        'color': u'#2249c2',
+        'lines': {u'show': True},
+        'points': {
+            'fillColor': u'#2249c2',
+            'show': True
+        },
+        'data': upload_ds,
+        'label': u'upload (Mbit/s)',
+    }
+]
+json.dump(downup, open("downup.json", 'w'), indent=4)
