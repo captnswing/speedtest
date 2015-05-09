@@ -26,39 +26,39 @@ if __name__ == '__main__':
             upload_ds.append([int(timestamp) * 1000, upload])
             download_ds.append([int(timestamp) * 1000, download])
 
-ping = [
-    {
-        'color': u'#FF0000',
-        'lines': {u'show': True},
-        'points': {
-            'fillColor': u'#FF0000',
-            'show': True
+    ping = [
+        {
+            'color': u'#FF0000',
+            'lines': {u'show': True},
+            'points': {
+                'fillColor': u'#FF0000',
+                'show': True
+            },
+            'data': ping_ds,
+            'label': u'ping (ms)',
+        }
+    ]
+    json.dump(ping, open(os.path.join(dropboxhome, "speedtest", "ping.json"), 'w'), indent=4)
+    downup = [
+        {
+            'color': u'#23c200',
+            'lines': {u'show': True},
+            'points': {
+                'fillColor': u'#23c200',
+                'show': True
+            },
+            'data': download_ds,
+            'label': u'download (Mbit/s)',
         },
-        'data': ping_ds,
-        'label': u'ping (ms)',
-    }
-]
-json.dump(ping, open(os.path.join(dropboxhome, "speedtest", "ping.json"), 'w'), indent=4)
-downup = [
-    {
-        'color': u'#23c200',
-        'lines': {u'show': True},
-        'points': {
-            'fillColor': u'#23c200',
-            'show': True
-        },
-        'data': download_ds,
-        'label': u'download (Mbit/s)',
-    },
-    {
-        'color': u'#2249c2',
-        'lines': {u'show': True},
-        'points': {
-            'fillColor': u'#2249c2',
-            'show': True
-        },
-        'data': upload_ds,
-        'label': u'upload (Mbit/s)',
-    }
-]
-json.dump(downup, open(os.path.join(dropboxhome, "speedtest", "downup.json"), 'w'), indent=4)
+        {
+            'color': u'#2249c2',
+            'lines': {u'show': True},
+            'points': {
+                'fillColor': u'#2249c2',
+                'show': True
+            },
+            'data': upload_ds,
+            'label': u'upload (Mbit/s)',
+        }
+    ]
+    json.dump(downup, open(os.path.join(dropboxhome, "speedtest", "downup.json"), 'w'), indent=4)
