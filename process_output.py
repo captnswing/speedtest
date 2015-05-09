@@ -36,7 +36,7 @@ ping = [
         'label': u'ping (ms)',
     }
 ]
-json.dump(ping, open("ping.json", 'w'), indent=4)
+json.dump(ping, open(os.path.join(dropboxhome, "speedtest", "ping.json"), 'w'), indent=4)
 downup = [
     {
         'color': u'#23c200',
@@ -59,4 +59,4 @@ downup = [
         'label': u'upload (Mbit/s)',
     }
 ]
-json.dump(downup, open("downup.json", 'w'), indent=4)
+json.dump(downup, open(os.path.join(dropboxhome, "speedtest", "downup.json"), 'w'), indent=4)
