@@ -21,8 +21,8 @@ if __name__ == '__main__':
             timestamp = fn.rstrip('.txt').split('_')[1]
             source = lines[3].split(':')[0]  # .replace(' ', '_')
             ping = lines[3].split(': ')[1].rstrip(' ms')
-            upload = lines[5].split(' ')[1]
-            download = lines[7].split(' ')[1]
+            download = lines[5].split(' ')[1]
+            upload = lines[7].split(' ')[1]
             ping_ds.append([int(timestamp) * 1000, float(ping)])
             upload_ds.append([int(timestamp) * 1000, upload])
             download_ds.append([int(timestamp) * 1000, download])
