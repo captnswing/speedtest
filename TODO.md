@@ -1,5 +1,3 @@
-* UTC timestamp
-
 * graphite on docker? 
     https://github.com/dotcloud/collectd-graphite
     https://github.com/titanous/graphite-on-dotcloud

@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import time
 import sys
 import subprocess as sp
 import socket
+import calendar
+import datetime
 
 if __name__ == '__main__':
+    # No: timestamp = int(time.time())
+    # Yes: https://github.com/flot/flot/blob/master/API.md#time-series-data
+    timestamp = calendar.timegm(datetime.datetime.now().timetuple())
     server = '6061'
-    filename = 'speedtest_{}.txt'.format(int(time.time()))
+    filename = 'speedtest_{}.txt'.format(timestamp)
     speedtest = 'speedtest-cli'
     dropboxhome = '/volume1/storage/dropbox'
     if socket.gethostname().endswith('.local'):
@@ -24,6 +28,7 @@ if __name__ == '__main__':
     exit_code = p.returncode
     if exit_code:
         print "failed"
+        print output
         sys.exit(-1)
     with open(filename, 'w') as f:
         f.write(output)
